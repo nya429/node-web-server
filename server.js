@@ -36,11 +36,13 @@ app.use( (req,res,next) => {
     next();
 })
 
-app.use( (req,res,next) => {
+app.use('/mmm', (req,res,next) => {
     res.render('mainteinance.hbs',{
         pageTitle:'Back soon',
         message: 'we are working on it',
     });
+
+    next();
 });
 
 app.use(express.static(__dirname + '/public')) //dirname is automatic set root
@@ -59,6 +61,13 @@ app.get('/about',(req,res) => {
         message: 'See my info',
     })
 });
+
+app.get('/project',(req,res)=> {
+    res.render('project.hbs',{
+        pageTitle:'Project',
+        message:'Code Snippe',
+    })
+})
 
 app.get('/bad',(req,res) => {
     res.send({
